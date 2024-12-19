@@ -10,4 +10,6 @@
 *.xml
 *.iml
 
+atoi.go
+go.mod
 main
