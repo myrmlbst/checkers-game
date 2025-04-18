@@ -1,6 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
 
 type PieceType int
 type Color int
@@ -121,7 +127,8 @@ func (b *Board) VisualizeBoard() {
 
 // check if moves are valid
 func (b *Board) IsValidMove(move Move) (bool, string) {
-    // utility functions:
+    
+	// utility functions:
 
     if !isInBounds(move.Start) || !isInBounds(move.End) {
         return false, "This move is out of bounds"
@@ -289,8 +296,8 @@ func GameLoop(board *Board) {
         numbers:= make([]int, 4)
         valid:= true
 
-        for i, coord := coords {
-            num. err := strconv.Atoi(coord)
+        for i, coord := range coords {
+            num, err := strconv.Atoi(coord)
             if err != nil || num < 0 || num > 7 {
                 fmt.Println("Invalid input. Please enter numbers between 0 and 7")
                 valid = false
@@ -314,6 +321,6 @@ func GameLoop(board *Board) {
 
 
 func main() {
-    board:= NewBoard()
-    GameLoop(board)
+	board:= NewBoard()
+	GameLoop(board)
 }
