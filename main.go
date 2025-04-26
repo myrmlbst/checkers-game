@@ -46,15 +46,17 @@ type Board struct {
 	Turn Color
 }
 
+//////////////////// BOARD DEVELOPMENT AND VISUALIZATION ////////////////////
+
 // create the board
 func NewBoard() *Board {
-	board:= &Board{
+	board := &Board{
 		Turn: Black, // black is always the staring piece
 	}
 
 	// fill up board with black pieces
-	for y:= 0; y < 3; y++ {
-		for x:= 0; x < 8; x++ {
+	for y := 0; y < 3; y++ {
+		for x := 0; x < 8; x++ {
 			if ((x + y) % 2) != 0 {
 				board.Grid[y][x] = &Piece{
 					Type:  Normal,
@@ -65,8 +67,8 @@ func NewBoard() *Board {
 	}
 
 	// fill up board with red pieces
-	for y:= 5; y < 8; y++ {
-		for x:= 0; x < 8; x++ {
+	for y := 5; y < 8; y++ {
+		for x := 0; x < 8; x++ {
 			if ((x + y) % 2) != 0 {
 				board.Grid[y][x] = &Piece{
 					Type:  Normal,
@@ -80,9 +82,9 @@ func NewBoard() *Board {
 }
 
 func (b *Board) VisualizeBoard() {
-	for y:= 0; y < 8; y++ {
+	for y := 0; y < 8; y++ {
 		fmt.Printf("%d |", y)
-		for x:= 0; x < 8; x++ {
+		for x := 0; x < 8; x++ {
 			// check if it is empty
 			// what color is that space
 			if b.Grid[y][x] == nil {
@@ -97,7 +99,7 @@ func (b *Board) VisualizeBoard() {
 				// check whether piece is normal or queen
 
 				// this space is NOT empty
-				piece:= b.Grid[y][x]
+				piece := b.Grid[y][x]
 
 				if piece.Color == Black {
 					if piece.Type == Queen {
@@ -125,8 +127,6 @@ func (b *Board) VisualizeBoard() {
 
 // check if moves are valid
 func (b *Board) IsValidMove(move Move) (bool, string) {
-
-	// utility functions:
 
 	if !isInBounds(move.Start) || !isInBounds(move.End) {
 		return false, "This move is out of bounds"
@@ -206,10 +206,10 @@ func (b *Board) MakeMove(move Move) bool {
 	if abs(move.End.X-move.Start.X) == 2 {
 		captureX := (move.Start.X + move.End.X) / 2
 		captureY := (move.Start.Y + move.End.Y) / 2
-		capturedPiece := b.Grid[captureY][captureX]
+		capturePiece := b.Grid[captureY][captureX]
 
 		b.Grid[captureY][captureX] = nil // piece no longer on this square
-		fmt.Printf("Captured %s piece at %d, %d", colorToString(capturedPiece.Color), captureX, captureY)
+		fmt.Printf("Captured %s piece at %d, %d", colorToString(capturePiece.Color), captureX, captureY)
 	}
 
 	// handle piece promotions
@@ -226,12 +226,14 @@ func (b *Board) MakeMove(move Move) bool {
 	return true
 }
 
+//////////////////// UTILITY FUNCTIONS ////////////////////
+
 // check if move is inside the boundaries of the board
 func isInBounds(position Position) bool {
 	return position.X >= 0 && position.X < 8 && position.Y >= 0 && position.Y < 8
 }
 
-// helper function to check whose move it is
+// check whose move it is
 func colorToString(c Color) string {
 	if c == Black {
 		return "Black"
@@ -240,7 +242,7 @@ func colorToString(c Color) string {
 	}
 }
 
-// helper function to check if moves are diagonal
+// check if moves are diagonal
 func abs(val int) int {
 	if val < 0 {
 		return -val
@@ -249,7 +251,7 @@ func abs(val int) int {
 	}
 }
 
-// helper function to find out who is the next opponent
+// find out who is the next opponent
 func opponent(c Color) Color {
 	if c == Black {
 		return Red
@@ -272,7 +274,7 @@ func GameLoop(board *Board) {
 	for {
 		board.VisualizeBoard() // updated tracker of what the board looks like (it updates with every move)
 
-		fmt.Printf("Enter move (start X start Y end X end Y):")
+		fmt.Printf("Enter move (Format: startX startY endX endY):")
 		if !scanner.Scan() {
 			return
 		}
@@ -315,3 +317,4 @@ func main() {
 	board := NewBoard()
 	GameLoop(board)
 }
+
