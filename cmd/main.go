@@ -82,6 +82,12 @@ func NewBoard() *Board {
 }
 
 func (b *Board) VisualizeBoard() {
+    // the highest edge of the board + numbers to identify the columns
+    for y := 0; y < 8; y++ {
+        fmt.Printf("   %d", y)
+    }
+    fmt.Println("\n  +---+---+---+---+---+---+---+---+")
+
 	for y := 0; y < 8; y++ {
 		fmt.Printf("%d |", y)
 		for x := 0; x < 8; x++ {
@@ -121,6 +127,7 @@ func (b *Board) VisualizeBoard() {
 			}
 		}
 
+        // lowermost edge of the board
 		fmt.Println("\n  +---+---+---+---+---+---+---+---+")
 	}
 }
@@ -263,7 +270,7 @@ func opponent(c Color) Color {
 func GameLoop(board *Board) {
 	scanner := bufio.NewScanner(os.Stdin) // reads from std input (cli)
 
-	fmt.Println("\nWelcome to Checkers!")
+	fmt.Println("\nWelcome to Checkers!\n")
 	fmt.Println("Instructions:")
 	fmt.Println("- Black pieces (b/B) move down the board")
 	fmt.Println("- Red pieces (r/R) move up the board")
