@@ -18,5 +18,5 @@ The pieces are symbolized as follows:
 7. For a piece to be promoted to Queen, it must first move to its opponent's farthermost edge of the game board. The piece does not obtain a Queen's privileges until it has been placed on cell 0 or 7. **Regular pieces that jump into position to become Queens are not treated as Queens until the next turn.**
 
 In order to win, you need to block your opponent from being able to make a move. That can be accomplished via:
-i. Capturing all their pieces
-ii. Trapping all their pieces (meaning that they have no legal moves) [Note: This feature has not been implemented yet.]
+1. Capturing all their pieces
+2. Trapping all their pieces (meaning that they have no legal moves) [Note: This feature has not been implemented yet.]
