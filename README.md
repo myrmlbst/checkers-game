@@ -20,3 +20,9 @@ The pieces are symbolized as follows:
 In order to win, you need to block your opponent from being able to make a move. That can be accomplished via:
 1. Capturing all their pieces
 2. Trapping all their pieces (meaning that they have no legal moves) [Note: This feature has not been implemented yet.]
+
+## To Run the Project Locally
+If you'd like to clone the project to test it out (or to submit a pull request) you can do so by running the following commands in your terminal:
+1. ```git clone https://github.com/myrmlbst/checkers-game.git```
+2. ```cd checkers-game```
+3. ```go run cmd/main.go```
